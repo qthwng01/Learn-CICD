@@ -1,0 +1,6 @@
+services:
+
+  web:
+    image: howtohack/node-app:latest
+    ports:
+      - 3000:3000

@@ -1,4 +1,4 @@
-name: Docker CI
+name: Docker CI & Render CD
 
 on:
   push:
@@ -32,3 +32,7 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/node-app:latest
             ${{ secrets.DOCKER_USERNAME }}/node-app:${{ github.sha }}
+
+      - name: Trigger Render Webhook Deploy
+        run: |
+          curl -X POST "https://api.render.com/deploy/${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_WEBHOOK_KEY }}"
